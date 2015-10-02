@@ -35,18 +35,17 @@ public class NumberFilter implements Filter {
     
     private void doBeforeProcessing(ServletRequest request, ServletResponse response)
             throws IOException, ServletException {
-        
-        
-        System.out.println("do Before");
+        // menambahkan atribut timeProc dengan nilai waktu dan tanggal saat ini
         request.setAttribute("timeProc", new Date());
+        // menambahkan atribut IPAddress dengan nilai IP Address komputer
         request.setAttribute("IPAddress", request.getRemoteAddr());
-
     }
     
     private void doAfterProcessing(ServletRequest request, ServletResponse response)
             throws IOException, ServletException {
-        System.out.println("do After");
+        // hapus atribut dan nilai timeProc
         request.removeAttribute("timeProc");
+        // hapus atribut dan nilai IPAddress
         request.removeAttribute("IPAddress");
     }
 
@@ -55,45 +54,30 @@ public class NumberFilter implements Filter {
             FilterChain chain)
             throws IOException, ServletException {
         
+        // lakukan proses filter doBeforeProcessing
         doBeforeProcessing(request, response);
-        System.out.println("Chain NUmberFilter filter");
+        // chaining doFilter
         chain.doFilter(request, response);
+        // lakukan proses doAfterProcessing
         doAfterProcessing(request, response);
     }
 
-    /**
-     * Return the filter configuration object for this filter.
-     */
     public FilterConfig getFilterConfig() {
         return (this.filterConfig);
     }
 
-    /**
-     * Set the filter configuration object for this filter.
-     *
-     * @param filterConfig The filter configuration object
-     */
     public void setFilterConfig(FilterConfig filterConfig) {
         this.filterConfig = filterConfig;
     }
 
-    /**
-     * Destroy method for this filter
-     */
     public void destroy() {      
         System.out.println("Filter destroy");
     }
 
-    /**
-     * Init method for this filter
-     */
     public void init(FilterConfig filterConfig) {        
         System.out.println("Init.... ");
     }
 
-    /**
-     * Return a String representation of this object.
-     */
     @Override
     public String toString() {
         if (filterConfig == null) {

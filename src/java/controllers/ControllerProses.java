@@ -77,6 +77,7 @@ public class ControllerProses extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        // proses ada di output
         this.output(request, response);
     }
     
@@ -93,16 +94,17 @@ public class ControllerProses extends HttpServlet {
         try {
         Validation validasi = Validation.getInstance(a1, a2);
         
-        // validasi ok
+        // cek validasi
         if (validasi.run()) {
             RequestDispatcher rd=request.getRequestDispatcher("result");  
             rd.forward(request, response);  
             
         } else {
-            // validasi gagal
+            // jika validasi gagal, tampilkan message 
             for(String validateMessage: validasi.getErrorMessage()) {
                 msgValidasi += "<small><b>Validasi:</b> "+validateMessage+"</small><br>";
             }
+            
             out.print(msgValidasi);
             RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
             rd.include(request, response);

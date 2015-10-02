@@ -46,7 +46,6 @@ public class ControllerResult extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         this.output(request, response);
-        
     }
     
     public void output(HttpServletRequest request, HttpServletResponse response) throws ServletException,  IOException {
@@ -61,7 +60,6 @@ public class ControllerResult extends HttpServlet {
         // tahap 2 - konversi string ke integer
         int angka1 = Integer.parseInt(a1);
         int angka2 = Integer.parseInt(a2);
-        
         
         // tahap 3 - membuat batasan nilai
         int batas1 = angka1 + 1;
@@ -97,7 +95,7 @@ public class ControllerResult extends HttpServlet {
         msg += "<tr><td>Nilai Terkecil</td><td>" + batas1 + "</td></tr>";
         msg += "<tr><td>Nilai Terbesar</td><td>" + batas2 + "</td></tr>";
         msg += "<tr><td>Waktu Proses</td><td>" + request.getAttribute("timeProc") + "</td></tr>";
-        msg += "<tr><td>IP</td><td>" + request.getAttribute("IPAddress") + "</td></tr>";
+        msg += "<tr><td>IP</td><td>" + request.getAttribute("angka1") + "</td></tr>";
         msg += "</table><br><a href='/yanwar-1111503007-jwp-tugas2-2015'>Kembali</a>";
         out.println(msg);
     }
@@ -106,5 +104,4 @@ public class ControllerResult extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }
-
 }
